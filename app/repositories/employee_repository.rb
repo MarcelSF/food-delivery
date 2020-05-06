@@ -32,5 +32,4 @@ class EmployeeRepository < BaseRepository
     end
     @next_id = @elements.last.id + 1 unless @elements.empty?
   end
-
 end

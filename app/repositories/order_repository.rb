@@ -2,15 +2,20 @@ require_relative '../models/order'
 require 'pry-byebug'
 class OrderRepository
   def initialize(csv_path, meal_repo, customer_repo, employee_repo)
+    @csv_path = csv_path
     @meal_repository = meal_repo
     @customer_repository = customer_repo
     @employee_repository = employee_repo
-    @csv_path = csv_path
     @orders = []
     if File.exist?(@csv_path)
       load_csv
       @next_id = @orders.empty? ? 1 : @orders.last.id + 1
     end
+  end
+
+  def mark_as_delivered(order)
+    order.deliver!
+    save_csv
   end
 
   def undelivered_orders

@@ -59,8 +59,8 @@ class Router
     when 2 then @meals_controller.list
     when 3 then @customers_controller.add
     when 4 then @customers_controller.list
-    when 5 then @orders_controller.list_undelivered
-    when 6 then @orders_controller.create
+    when 5 then @orders_controller.list_undelivered_orders
+    when 6 then @orders_controller.add
     when 8 then stop!
     else
       puts "Try again..."
@@ -69,7 +69,7 @@ class Router
 
   def delivery_guy_route_action(choice)
     case choice
-    when 1 then @orders_controller.list_my_undelivered(@employee)
+    when 1 then @orders_controller.list_my_orders(@employee)
     when 2 then @orders_controller.mark_as_delivered(@employee)
     when 8 then stop!
     else
